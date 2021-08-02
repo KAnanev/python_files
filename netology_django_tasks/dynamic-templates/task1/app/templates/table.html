@@ -1,0 +1,36 @@
+{% load bg_color %}
+<table>
+<tr>
+{% for data in table_header %}
+    <th>{{ data }}</th>
+{% endfor %}
+</tr>
+{% for rows in table_rows %}
+    <tr>
+
+        {% for data in rows %}
+            {% if data == rows|last %}
+                <td style="background-color: {{ rows|grey_color}}">
+
+                    {{ data }}
+
+                </td>
+            {% elif  data == rows|first%}
+                <td style="background-color: white">
+
+                    {{ data|default:'-' }}
+
+                </td>
+            {% else %}
+                <td style="background-color: {{ data|color_filter}}">
+
+                    {{ data|default:'-' }}
+
+                </td>
+            {% endif %}
+        {% endfor %}
+
+
+    </tr>
+{% endfor %}
+</table>
